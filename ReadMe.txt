@@ -378,3 +378,20 @@ Basic usage example :
 					progress.percentDisplay.text = progress.currentProgress +" out of "+ progress.totalProgress;
 				}
 			}
+			
+3.1)
+Show kb,MB,GB,TB,PB of total kb,MB,GB,TB,PB
+
+private function progressFunction():void
+{
+	if (pb.percentDisplay)
+	{
+		var s:Array = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+		var expCurr:Number = Math.floor(Math.log(pb.currentProgress)/Math.log(1024));
+		var expTot:Number = Math.floor(Math.log(pb.totalProgress)/Math.log(1024));
+			
+		pb.percentDisplay.text = (pb.currentProgress / Math.pow(1024, Math.floor(expCurr))).toFixed(2) + " " + s[expCurr] + " av " + (pb.totalProgress / Math.pow(1024, Math.floor(expTot))).toFixed(2) + " " + s[expTot];
+
+	}
+}
+
